@@ -1,6 +1,8 @@
 import os, shutil, random, psutil, ctypes
+import os.path
 
-ctypes.windll.kernel32.SetConsoleTitleW("Кеша, для чистки кэша")
+# ctypes.windll.kernel32.SetConsoleTitleW("Кеша для чистки кэша")
+ctypes.windll.kernel32.SetConsoleTitleW("Иннокентий 3.3.3")
 
 userDir = os.path.expanduser('~')
 path = f'{userDir}\\AppData\\Local\\Plagiatus\\'
@@ -70,9 +72,11 @@ def processCheck():
 
 # проверка, пуста ли папка
 def emptyCheck():
-    dir_contents = [x for x in os.listdir(path) if not x.startswith('.')]
-    if len(dir_contents) > 0:
-        return 1
+    if os.path.exists(path):
+        dir_contents = [x for x in os.listdir(path) if not x.startswith('.')]
+        if len(dir_contents) > 0:
+            return 1
+        return 0
     return 0
 
 # удаление содержи
